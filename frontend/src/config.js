@@ -1,7 +1,7 @@
 // Configuration file for API keys and settings
 export const config = {
-  // Get your RapidAPI key from: https://rapidapi.com/judge0-official/api/judge0-ce/
-  RAPIDAPI_KEY: "2552141b9dmsh27a7611602b0bf9p1a0224jsn8ca0be7dd279",
+  // Hardcoded RapidAPI key for Judge0 CE
+  RAPIDAPI_KEY: "2552141b9dmsh27a7611602b0bf9p1a0224jsn8ca0be7dd279", // Get your free key from: https://rapidapi.com/judge0-official/api/judge0-ce/
   
   // Judge0 API settings
   JUDGE0_API: {

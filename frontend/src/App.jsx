@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CodeEditor from "./components/Editor";
+import CollaborativeEditor from "./components/Editor";
 import VideoChat from "./components/VideoChat";
 import TextEditor from "./components/TextEditor";
 
@@ -329,7 +329,7 @@ function App() {
 
             {/* Center editor */}
             <div style={{ padding: "10px", display: "flex", flexDirection: "column", minHeight: 0 }}>
-              <CodeEditor roomId={roomId} />
+              <CollaborativeEditor roomId={roomId} />
             </div>
 
             {/* Right video chat */}

@@ -81,17 +81,13 @@ function CollaborativeEditor({ roomId }) {
       const currentCode = editorRef.current.getValue();
       const newDefaultCode = LANGUAGE_CONFIGS[newLanguage].defaultCode;
       
-      // Only change code if it's the default code for the current language
-      const currentDefaultCode = LANGUAGE_CONFIGS[selectedLanguage].defaultCode;
-      if (currentCode === currentDefaultCode) {
-        isRemoteChange.current = true;
-        editorRef.current.setValue(newDefaultCode);
-        isRemoteChange.current = false;
-        socket.emit("code-change", { roomId, code: newDefaultCode, language: newLanguage });
-      } else {
-        // Just update the language without changing code
-        socket.emit("code-change", { roomId, code: currentCode, language: newLanguage });
-      }
+      // Always update the editor with the new language's default code
+      isRemoteChange.current = true;
+      editorRef.current.setValue(newDefaultCode);
+      isRemoteChange.current = false;
+      
+      // Emit the language change to other participants
+      socket.emit("code-change", { roomId, code: newDefaultCode, language: newLanguage });
     }
   };
 
@@ -103,8 +99,8 @@ function CollaborativeEditor({ roomId }) {
     const languageConfig = LANGUAGE_CONFIGS[selectedLanguage];
     
     // Check if API key is configured
-    if (config.RAPIDAPI_KEY === "YOUR_RAPIDAPI_KEY_HERE") {
-      setOutput(`Error: Please configure your RapidAPI key.`);
+    if (!config.RAPIDAPI_KEY || config.RAPIDAPI_KEY === "YOUR_RAPIDAPI_KEY_HERE") {
+      setOutput(`Error: Please configure your RapidAPI key in frontend/src/config.js`);
       return;
     }
     
