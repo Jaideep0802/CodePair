@@ -99,7 +99,7 @@ function CollaborativeEditor({ roomId }) {
     const languageConfig = LANGUAGE_CONFIGS[selectedLanguage];
     
     // Check if API key is configured
-    if (!config.RAPIDAPI_KEY || config.RAPIDAPI_KEY === "YOUR_RAPIDAPI_KEY_HERE") {
+    if (!config.RAPIDAPI_KEY) {
       setOutput(`Error: Please configure your RapidAPI key in frontend/src/config.js`);
       return;
     }
